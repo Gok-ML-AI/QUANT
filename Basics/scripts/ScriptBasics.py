@@ -426,3 +426,144 @@ print("*************************IF/ELSE Statements*************************")
 print()
 
 # Basic Syntax
+x = 0
+if (x > 5):
+    print("X is greater than 5.")
+else:
+    print("X is less than or equal to 5")
+
+# indent with tab after if and else
+
+# If statement can have anything that evaluates to a boolean after it > refer to boolean section
+ticker = 'AAPL US Equity'
+# ticker = 'SPX Index'
+if 'US Equity' in ticker:
+    print("Ticker is Us Equity")
+else:
+    print("Ticker is not Us Equity")
+
+# elif statements
+# ticker = 'AAPL US Equity'
+# ticker = '1U1 GR Equity'
+ticker = 'SPX Index'
+
+if 'Us Equity' in ticker:
+    print('Ticker is American')
+elif 'JP Equity' in ticker:
+    print('Ticker is Japanese')
+elif 'GR in Equity' in ticker:
+    print('Ticker is German')
+else:
+    print('Ticker is not Japanese, German or American')
+
+
+# LOOPS
+print()
+print("*************************LOOPS*************************")
+print()
+
+# While Loops
+# Execute a set of statements as long as a boolean condition is True
+# Less commonly used than for loops
+
+ct = 0
+while (ct < 5):
+    print(ct)
+    ct = ct + 1
+
+print()
+
+# Must indent the body
+#For Loops
+# Iterate over data types like lists, dictionaries, strings etc.
+# More common to use than while loop
+
+# Iterate through a list - must indent the body
+tickers = {'AAPL', 'XOM', 'BAC', 'WMT'}
+for z in tickers:
+    print(z + ' US Equity')
+
+print()
+# Loop through a string
+for x in 'AAPL':
+    print(x)
+
+print()
+# Loop through a dictionary
+returns = {'AAPL':0.01, 'XOM':-0.02, 'BAC':0.05}
+for x in returns:
+    print(x)
+
+print()
+# To print out the value in returns each time we loop then
+for x in returns:
+    print(returns[x])
+
+print()
+
+
+# Some Syntactic Sugar
+print()
+print("*************************Some Syntactic Sugar*************************")
+print()
+
+print()
+# Define a function in one line with lambda
+multiply = lambda x,y: x * y
+print("multiply(2,2) = ", multiply(2,2))
+print("multiply(2,4) = ", multiply(2,4))
+
+print()
+# if/else one line
+t=3
+print(">2") if t>2 else print("<2")
+
+print()
+# List comprehension: loop through and modify a list in one line
+# new list = {expression for item in iterable if condition == True}
+tickers = ['AAPL US Equity', 'WMT US Equity', '1U1 GR Equity']
+us_tickers = [x.split(' ')[0] for x in tickers if 'US Equity' in x]
+print(us_tickers)
+
+# Create a dictionary in onle line
+print()
+ctry_map = {x.split(' ')[0]: x.split(' ')[1] for x in tickers}
+print("New country Map is : ",ctry_map)
+
+print()
+
+
+# QUIZ
+print()
+print("*************************Quiz*************************")
+print()
+
+def get_excess_ret(ret, bmark, beta=1.0):
+    return ret - beta * bmark
+# print(get_excess_ret(0.03))
+
+# get_excess_ret() missing 1 required positional argument: 'bmark'
+
+# What is the value of sector after running this code?
+ticker = 'XOM'
+if ticker == 'AAPL':
+    sector = 'Tech'
+elif ticker == 'XOM':
+    sector = 'Energy'
+elif ticker == 'GS':
+    sector = "Financials"
+else:
+    sector = "missing"
+print("Sector = ", sector)
+print()
+
+# What is the value of is_big after running this code?
+signal = [-2, 0, -3, 5, 6, 7]
+is_big = []
+
+for x in signal:
+    is_big.append(x>2)
+
+print("is_big() contains : ", is_big)
+
+print()
