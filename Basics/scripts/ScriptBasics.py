@@ -525,7 +525,7 @@ tickers = ['AAPL US Equity', 'WMT US Equity', '1U1 GR Equity']
 us_tickers = [x.split(' ')[0] for x in tickers if 'US Equity' in x]
 print(us_tickers)
 
-# Create a dictionary in onle line
+# Create a dictionary in one line
 print()
 ctry_map = {x.split(' ')[0]: x.split(' ')[1] for x in tickers}
 print("New country Map is : ",ctry_map)
@@ -567,3 +567,79 @@ for x in signal:
 print("is_big() contains : ", is_big)
 
 print()
+
+# Homework
+
+pos = {'AAPL':1000,'TSLA':500,'BAC':-250,'GS':1200}
+ret = {'AAPL':-0.01,'TSLA':0.05,'BAC':0.01,'GS':0.03}
+
+def compute_profit(pos,ret):
+    profit={}
+    # fill out the body here
+    for l in pos:
+        if l in ret:
+            temp_symbol = l
+            temp_return = pos[l] * ret[l]
+            profit[temp_symbol] = temp_return
+    # return a dict profit with keys=tickers and values=dollar profits
+    return profit
+
+temp = compute_profit(pos,ret)
+
+print()
+
+import numpy as np
+np.random.seed(2)
+rets = list(np.random.normal(0, 0.1/np.sqrt(252), 252))
+# compute_stats takes as input rets and returns a new dictionary containing performance stats with (key:values) as specified below
+# "avg": average daily return
+# "hit_rate": percent of returns which are positive
+# "max_ret": max daily return
+
+print("# rets length : ", len(rets))
+print("# rets : ", rets)
+
+def compute_avg(ret_list):
+    total = 0
+    for ret_value in ret_list:
+        total = total + ret_value
+
+    avg = total/len(ret_list)
+    return float(avg)
+
+def compute_hit_rate(ret_list):
+    hit_rate = 0
+    for i in ret_list:
+        if i >= 0:
+            hit_rate += 1
+
+    return hit_rate
+
+def compute_list_maxvalue(ret_list):
+    max_value = ret_list[0]
+    ret_list
+    for i in ret_list:
+        if i > max_value:
+            max_value = i
+
+    return float(max_value)
+
+
+
+
+def compute_stats(rets):
+    stats = {}
+    stats_keys = ['avg', 'hit_rate', 'max_ret']
+    # fill out the body here
+    avg = compute_avg(rets)
+    hit_rate = compute_hit_rate(rets)
+    max_ret = compute_list_maxvalue(rets)
+    stats_values = [avg, hit_rate, max_ret]
+
+    for i in range(len(stats_keys)):
+        stats[stats_keys[i]] = stats_values[i]
+
+    # return a dict stats with keys avg, hit_rate and max_ret
+    return stats
+
+print("Compute_stats(rets) = ", compute_stats(rets))
