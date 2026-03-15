@@ -567,8 +567,16 @@ for x in signal:
 print("is_big() contains : ", is_big)
 
 print()
+print()
 
 # Homework
+print()
+print("*************************Homework*************************")
+print()
+
+# Problem 1 -  Computing Dollar Profits
+print("****************** ## Problem 1 -  Computing Dollar Profits ******************")
+print()
 
 pos = {'AAPL':1000,'TSLA':500,'BAC':-250,'GS':1200}
 ret = {'AAPL':-0.01,'TSLA':0.05,'BAC':0.01,'GS':0.03}
@@ -588,9 +596,17 @@ temp = compute_profit(pos,ret)
 
 print()
 
+
+## Problem 2 - Performance Stats
+
+print("****************** Problem 2 - Performance Stats ******************")
+print()
+
+
 import numpy as np
 np.random.seed(2)
 rets = list(np.random.normal(0, 0.1/np.sqrt(252), 252))
+
 # compute_stats takes as input rets and returns a new dictionary containing performance stats with (key:values) as specified below
 # "avg": average daily return
 # "hit_rate": percent of returns which are positive
@@ -624,9 +640,6 @@ def compute_list_maxvalue(ret_list):
 
     return float(max_value)
 
-
-
-
 def compute_stats(rets):
     stats = {}
     stats_keys = ['avg', 'hit_rate', 'max_ret']
@@ -643,3 +656,70 @@ def compute_stats(rets):
     return stats
 
 print("Compute_stats(rets) = ", compute_stats(rets))
+print()
+
+# Problem 3 - Signal Analysis
+print("******************  Problem 3 - Signal Analysis ******************")
+print()
+
+# "daily_returns" variable is a list containing randomly generated, hypothetical daily returns
+# "daily_ret_signal" variable represents a daily hypothetical daily return that could be predictive of "daily_returns"
+# Please complete the function "analyze_signal"
+# analyze_signal takes as input daily_returns and daily_ret_signal and returns a new dictionary with key:values as specified below
+# pos_ret average daily return with the daily_ret_signal > 1
+# neg_ret average daily return when the daily_ret_signal is < -1
+# spread pos_ret - neg_ret
+# Hint Lookup and use python "range" function...
+
+
+# Generate random returns and a signal
+# Don't worry about how to generate these for now.
+
+import numpy as np
+np.random.seed(2)
+daily_returns = list(np.random.normal(0, 0.1/np.sqrt(252), 252))
+daily_ret_signal = list(np.random.normal(0,1,252))
+
+def analyze_signal_example(returns, signal):
+    analysis = {}
+    # fill out the body here
+    # Grab # pos_ret average daily return with the daily_ret_signal > 1
+    # &
+    # neg_ret average daily return when the daily_ret_signal is < -1
+    # &
+    # spread pos_ret - neg_ret
+
+    # return the analysis dict with keys pos_ret, neg_ret, spread
+    return analysis
+
+
+def analyze_signal(returns, signal):
+    analysis = {}
+    pos_ret = 0
+    pos_count = 0
+    neg_ret = 0
+    neg_count = 0
+
+    for idx in range(len(returns)):
+        if signal[idx] > 1:
+            pos_count += 1
+            pos_ret += returns[idx]
+        elif signal[idx] < -1:
+            neg_count += neg_count
+            neg_ret += returns[idx]
+
+
+
+
+    analysis['pos_ret'] = float(pos_ret)
+    analysis['neg_ret'] = float(neg_ret)
+    analysis['spread'] = float(pos_ret) - float(neg_ret)
+    # check these 2 lines???
+    analysis['spread'] = analysis['pos_ret'] - analysis['neg_ret']
+
+    # return the analysis dict with keys pos_ret, neg_ret, spread
+    return analysis
+
+print("The analyze_signal dictionary : ", analyze_signal(daily_returns, daily_ret_signal))
+print()
+print()
