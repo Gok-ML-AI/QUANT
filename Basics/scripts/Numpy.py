@@ -252,10 +252,27 @@ print()
 
 # Numpy Linear algebra
 print("**********Numpy Linear algebra**********")
+print("linear Algebra is better done in Numpy than Pandas....")
+
+x = np.array([[1., 2., 3.],[4., 5., 6.]])
+print("The 'x' array : ", x)
 print()
+
+y = np.array([[6., 23.], [-1, 7], [8,9]])
+print("the 'y' array : ", y)
+
+# multiple matrices
+print("multiple matrices - x.dot(y) : ", x.dot(y))
 print()
+print("Or can do it np.dot(x, y) : ", np.dot(x, y))
 print()
+print("or can do 'x @ y' : ", x @ y)
 print()
+print("The Transpose - 'x.T' : ", x.T)
+print()
+
+# Inverse
+print("The Linear Algebra inverse is : ", np.linalg.inv(x @ y))
 print()
 print()
 
