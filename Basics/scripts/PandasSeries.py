@@ -13,6 +13,7 @@ While maintaining some key value mapping construction present in a dictionary.
 
 # Imports
 import pandas as pd
+import numpy as np
 
 # Series Construction
 # Series construction w/ dict - representing the returns within a particular day with ticker symbols
@@ -146,3 +147,102 @@ print()
 """
 
 # Arithmetic & Boolean operations
+# series construction w/ dict
+import pandas as pd
+
+ret_dict = {'AAPL':-0.01, 'MSFT':-0.02, 'TSLA': 0.015, 'LULU':-0.005}
+ser = pd.Series(ret_dict)
+print("Series initialisation : ", ser)
+
+# Scalar arithmetic is much easier with a series
+mkt_ret = 0.005
+print("The Series after subtracting the Market return : ", ser - mkt_ret)
+
+# Scalar arithmetic is very hard with a dict... need to use a loop
+mkt_ret = 0.005
+ret_dict = {'AAPL':-0.01, 'MSFT':-0.02, 'TSLA': 0.015}
+print("The current value of ret_dict : ", ret_dict)
+print()
+
+dict_excess={}
+for key in ret_dict:
+    dict_excess[key] = ret_dict[key]-mkt_ret
+print("After looping through ret_dict and subtracting mkt_ret : ", dict_excess)
+print()
+# Scalar arithmetic is much easier with a series
+mkt_ret = 0.005
+ser - mkt_ret
+print("Ser values : ", ser)
+print()
+
+# boolean logic operates element-wise
+print("SER is > 0 : ", ser > 0)
+print()
+
+# get sign of returns
+print("Print the sign values of Series :  ",np.sign(ser))
+print()
+
+# Series  map - apply any function element-wise
+
+# Map
+def thresh(x):
+    if x > mkt_ret:
+        return x
+    else:
+        return mkt_ret
+
+print("The values before applying Thresh function : ", ser)
+print()
+print("Applying the thresh() function to the series")
+print("Will return the mkt_ret if series value is less than mkt_ret.")
+print(ser.map(thresh))
+print()
+
+# Might be easier to use lambda syntactic sugar
+# Also can be achieved by
+print("Using Lambda to apply thresh logic : ", ser.map(lambda x: x if x > mkt_ret else mkt_ret))
+print()
+
+# Series have various built in methods similar to numpy arrays
+
+# Average Return
+print("Ser Average Return : ", ser.mean())
+print()
+
+# Min Return
+print("Ser Min Return : ", ser.min())
+print()
+
+# Standard Deviation
+print("Ser Standard Deviation : ", ser.std())
+print()
+
+# Do NOT do this for the average
+# When ever you find yourself writing a loop, check if there is a better way
+
+avg = 0
+for x in ser.values:
+    avg+=x
+avg=avg/len(ser)
+print("The average of Series values using a loop : ", avg)
+print()
+
+# Return the ascending order rank of items
+print("The ascending order of the Series : ", ser.rank())
+print()
+
+#
+print("returning summary stats on the original series : ", ser.describe())
+print()
+
+# Alignment
+# Series Data Alignment
+# 1. Arithmetic Alignment
+# 2. Boolean Alignment
+
+import pandas as pd
+ret1 = pd.Series({"VXX":0.01, 'AAPL':0.01, 'LULU':-0.01, 'TSLA':-0.03, 'MSFT':-0.01})
+print("The ret1 Series : ", ret1)
+
+# To be continued
