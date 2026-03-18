@@ -242,7 +242,73 @@ print()
 # 2. Boolean Alignment
 
 import pandas as pd
-ret1 = pd.Series({"VXX":0.01, 'AAPL':0.01, 'LULU':-0.01, 'TSLA':-0.03, 'MSFT':-0.01})
-print("The ret1 Series : ", ret1)
 
-# To be continued
+print("The returns on 2 different days for tickers :")
+
+ret1 = pd.Series({"VXX":0.01, 'AAPL':0.01, 'LULU':-0.01, 'TSLA':-0.03, 'MSFT':-0.01})
+print("The initialized day1 returns : ", ret1)
+print()
+
+ret2 = pd.Series({'VXX':0.02, 'AAPL':-0.01, 'LULU':0.02, 'TSLA':-0.04, 'MSFT':-0.02})
+print("The initialized day2 returns : ", ret2)
+print()
+
+
+print("Adding the 2 days returns -> 'ret2 + ret1' : ", ret2 + ret1)
+print()
+
+#
+ret3 = pd.Series({'TSLA':-0.01, 'AAPL':0.02})
+print("The initialized day 3 returns : ", ret3)
+print()
+
+#
+
+print("Adding the 2 days returns when not all matching tickers -> 'ret1 + ret3' : ", ret1 + ret3)
+print()
+
+# can be done with div(), sub(), mul() etc.
+print("Fill values with Nan to keep original values in original series : ", ret1.add(ret3, fill_value=0))
+print()
+
+# Boolean Alignment
+
+#
+print("Is the element in ret1 > than the element in ret3 (return new series : ", ret1 > ret2)
+print()
+
+# This will not work as can only compare identically labeled series
+# print(" : ", ret1 > ret3)
+# print()
+
+
+
+bool1 = (ret1 > 0)
+print("Create a new boolean series and check if ret1 > 0 : ", bool1)
+print()
+
+#
+bool2 = (ret2 > 0)
+print("Create a new boolean series and check if ret2 > 0 : ", bool2)
+print()
+
+#
+print("The value of bool1 : ", bool1)
+print()
+
+print("The value of bool2 : ", bool2)
+print()
+
+print("bool1 & bool2 : ", bool1 & bool2)
+print()
+
+print("bool1 | bool2 : ", bool1 | bool2)
+print()
+
+print("Will do Series alignment when doing comparison.")
+print("bool2 & bool1[['MSFT', 'TSLA', 'LULU', 'AAPL', 'VXX']] : ", bool2 & bool1[['MSFT', 'TSLA', 'LULU', 'AAPL', 'VXX']])
+print()
+
+print("Will do Series alignment when doing comparison, if NOT present will assume value is false.")
+print("bool2 & bool1[['MSFT', 'TSLA', 'LULU', 'AAPL', 'VXX']] : ", bool2 & bool1[['VXX']])
+print()
